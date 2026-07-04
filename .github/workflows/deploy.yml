@@ -19,7 +19,10 @@ jobs:
           node-version: 20
           cache: 'npm'
       - run: npm install
-      - run: npm run build
+      - name: Build
+        run: npm run build
+        env:
+          REPOS_TOKEN: ${{ secrets.REPOS_TOKEN }}
       - uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist

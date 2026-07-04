@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# Generato a build-time dallo script fetch-repos.mjs
+public/repos.json
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
