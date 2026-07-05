@@ -1,6 +1,23 @@
 import { esperienze } from '../../data/esperienze';
 
 export function Esperienze() {
+
+  const renderRuolo = (testo: string) => {
+    const regex = /(\([^)]+\d+[^)]*\))/g;
+    const parti = testo.split(regex);
+
+    return parti.map((parte, index) => {
+      if (regex.test(parte)) {
+        return (
+          <span key={index} className="whitespace-nowrap">
+            {parte}
+          </span>
+        );
+      }
+      return parte;
+    });
+  };
+
   return (
     <section
       id="esperienze"
@@ -52,11 +69,23 @@ export function Esperienze() {
 
               {/* Contenuto */}
               <div className="flex-1">
-                <h3 className="font-display text-2xl md:text-3xl font-medium leading-tight tracking-tight text-foreground mb-1">
-                  {exp.ruolo}
-                </h3>
+                <div className="flex items-baseline gap-4 mb-1">
+                  <h3 className="font-display text-2xl md:text-3xl font-medium leading-tight tracking-tight text-foreground">
+                    {renderRuolo(exp.ruolo)}
+                  </h3>
+                  {exp.voto && (
+                    <span className="font-mono text-xs uppercase tracking-widest text-muted-foreground border border-border-light px-2 py-0.5 shrink-0">
+                      {exp.voto}
+                    </span>
+                  )}
+                </div>
                 <p className="font-body italic text-muted-foreground text-base mb-4">
                   {exp.organizzazione}
+                  {exp.luogo && (
+                    <span className="font-mono not-italic text-xs uppercase tracking-widest ml-3">
+                      · {exp.luogo}
+                    </span>
+                  )}
                 </p>
                 <p className="font-body text-base leading-relaxed text-muted-foreground max-w-xl">
                   {exp.descrizione}

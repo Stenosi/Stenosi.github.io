@@ -1,4 +1,4 @@
-# Design System — Minimalist Monochrome
+# Design System - Minimalist Monochrome
 
 Questo file è la reference permanente per lo stile del portfolio. Consultarlo prima di ogni modifica visiva.
 
@@ -45,7 +45,7 @@ Always aim to:
 
 ### Core Principle
 
-**Reduction to Essence.** Minimalist Monochrome strips design down to its most fundamental elements: black, white, and typography. There are no accent colors to hide behind, no gradients to soften edges, no shadows to create false depth. Every design decision must stand on its own merit. This is design as discipline—where restraint becomes the ultimate form of expression.
+**Reduction to Essence.** Minimalist Monochrome strips design down to its most fundamental elements: black, white, and typography. There are no accent colors to hide behind, no gradients to soften edges, no shadows to create false depth. Every design decision must stand on its own merit. This is design as discipline-where restraint becomes the ultimate form of expression.
 
 ### Visual Vibe
 
@@ -58,7 +58,7 @@ This is the visual language of:
 - Award-winning book design and fine typography
 - Gallery exhibition materials
 
-The design commands respect through its confidence. It doesn't need color to be interesting—it uses scale, contrast, rhythm, and negative space to create visual drama.
+The design commands respect through its confidence. It doesn't need color to be interesting-it uses scale, contrast, rhythm, and negative space to create visual drama.
 
 ### What This Design Is NOT
 
@@ -73,22 +73,22 @@ The design commands respect through its confidence. It doesn't need color to be 
 ### The DNA of Minimalist Monochrome
 
 #### 1. Pure Black & White Palette
-No grays for primary elements—use true black (#000000) and true white (#FFFFFF). Gray is reserved only for secondary text and borders. The stark contrast creates immediate visual impact and forces deliberate hierarchy decisions.
+No grays for primary elements-use true black (#000000) and true white (#FFFFFF). Gray is reserved only for secondary text and borders. The stark contrast creates immediate visual impact and forces deliberate hierarchy decisions.
 
 #### 2. Serif Typography as Hero
-Unlike modern sans-serif minimalism, this style embraces classical serif typefaces. The serif adds sophistication, editorial weight, and timeless elegance. Typography isn't just content—it's the primary visual element.
+Unlike modern sans-serif minimalism, this style embraces classical serif typefaces. The serif adds sophistication, editorial weight, and timeless elegance. Typography isn't just content-it's the primary visual element.
 
 #### 3. Oversized Type Scale
-Headlines don't just inform—they dominate. Expect 8xl, 9xl, and custom larger sizes. Words become graphic elements. Single words or short phrases can fill entire viewport widths.
+Headlines don't just inform-they dominate. Expect 8xl, 9xl, and custom larger sizes. Words become graphic elements. Single words or short phrases can fill entire viewport widths.
 
 #### 4. Line-Based Visual System
 Instead of filled shapes, shadows, or backgrounds, this design uses lines: hairlines, thick rules, borders, underlines, strikethroughs. Lines create structure without mass.
 
 #### 5. Sharp Geometric Precision
-Zero border radius everywhere. Perfect 90-degree corners. Precise alignments. The geometry is architectural—think Bauhaus meets editorial print design.
+Zero border radius everywhere. Perfect 90-degree corners. Precise alignments. The geometry is architectural-think Bauhaus meets editorial print design.
 
 #### 6. Dramatic Negative Space
-Whitespace isn't empty—it's active. Generous margins and padding create breathing room that makes the black elements more impactful. The page breathes.
+Whitespace isn't empty-it's active. Generous margins and padding create breathing room that makes the black elements more impactful. The page breathes.
 
 #### 7. Inversion for Emphasis
 Instead of accent colors, use color inversion (black background, white text) to highlight important elements. This creates drama without breaking the monochrome rule.
@@ -116,11 +116,11 @@ border-light:     #E5E5E5
 
 ### Border Radius
 
-**ALL VALUES: 0px** — nessuna eccezione.
+**ALL VALUES: 0px** - nessuna eccezione.
 
 ### Shadows
 
-**NONE** — zero drop shadows in tutto il sito.
+**NONE** - zero drop shadows in tutto il sito.
 
 ### Borders & Lines
 
@@ -135,16 +135,16 @@ ultra:     8px solid #000000
 ### Textures (obbligatorie per evitare flat design)
 
 ```css
-/* Horizontal lines — sezioni principali */
+/* Horizontal lines - sezioni principali */
 background-image: repeating-linear-gradient(0deg, transparent, transparent 1px, #000 1px, #000 2px);
 background-size: 100% 4px;
 opacity: 0.015;
 
-/* Grid — sezioni editoriali */
+/* Grid - sezioni editoriali */
 background-image: linear-gradient(#00000008 1px, transparent 1px), linear-gradient(90deg, #00000008 1px, transparent 1px);
 background-size: 40px 40px;
 
-/* Vertical lines — sezioni invertite (sfondo nero) */
+/* Vertical lines - sezioni invertite (sfondo nero) */
 background-image: repeating-linear-gradient(90deg, transparent, transparent 1px, #fff 1px, #fff 2px);
 background-size: 4px 100%;
 opacity: 0.03;

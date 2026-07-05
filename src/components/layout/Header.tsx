@@ -15,19 +15,19 @@ export function Header() {
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between h-14">
         {/* Logo / nome */}
         <a
-          href="#hero"
-          className="font-display text-lg font-medium tracking-tight text-foreground hover:opacity-70 transition-opacity duration-100 focus-visible:outline focus-visible:outline-3 focus-visible:outline-foreground focus-visible:outline-offset-2"
+          href="#"
+          className="font-display text-lg font-medium tracking-tight text-foreground hover:opacity-70 transition-opacity duration-100 focus-visible:outline-3 focus-visible:outline-foreground focus-visible:outline-offset-2"
         >
-          Stenosi
+          Davide Marsili <span className='ml-2 text-muted-foreground/75'>(Stenosi)</span>
         </a>
 
         {/* Nav desktop */}
-        <nav className="hidden md:flex items-center gap-8" aria-label="Navigazione principale">
+        <nav className="hidden md:flex items-stretch self-stretch" aria-label="Navigazione principale">
           {NAV_LINKS.map(({ label, href }) => (
             <a
               key={href}
               href={href}
-              className="font-mono text-xs uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors duration-100 focus-visible:outline focus-visible:outline-3 focus-visible:outline-foreground focus-visible:outline-offset-2"
+              className="font-mono text-xs uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors duration-100 focus-visible:outline-3 focus-visible:outline-foreground focus-visible:outline-offset-2 flex items-center px-5"
             >
               {label}
             </a>
@@ -36,7 +36,7 @@ export function Header() {
 
         {/* Hamburger mobile */}
         <button
-          className="md:hidden flex flex-col justify-center gap-1.5 w-10 h-10 focus-visible:outline focus-visible:outline-3 focus-visible:outline-foreground focus-visible:outline-offset-2"
+          className="md:hidden flex flex-col justify-center gap-1.5 w-10 h-10 focus-visible:outline-3 focus-visible:outline-foreground focus-visible:outline-offset-2"
           onClick={() => setMenuOpen((o) => !o)}
           aria-expanded={menuOpen}
           aria-label={menuOpen ? 'Chiudi menu' : 'Apri menu'}

@@ -43,7 +43,7 @@ export function useGitHubRepos() {
           }
         }
       } catch {
-        // File non presente (dev locale senza build) — si cade nel fallback
+        // File non presente (dev locale senza build) - si cade nel fallback
       }
 
       // 2. Fallback: API pubblica per sviluppo locale (solo repo proprie, nessun token)

@@ -12,15 +12,19 @@ const LANG_COLORS: Record<string, string> = {
   Go: '#00ADD8',
   HTML: '#e34c26',
   CSS: '#563d7c',
+  SCSS: '#c6538c',
   Dart: '#00B4AB',
+  GDScript: '#355570',
+  'C#': '#178600',
+  PHP: '#4F5D95',
 };
 
 function LanguageDot({ lang }: { lang: string }) {
   const color = LANG_COLORS[lang] ?? '#888';
   return (
-    <span className="flex items-center gap-1.5">
+    <span className="flex items-center gap-1">
       <span
-        className="inline-block w-2.5 h-2.5 border border-black/20"
+        className="inline-block w-2 h-2 shrink-0"
         style={{ backgroundColor: color }}
         aria-hidden="true"
       />
@@ -34,27 +38,30 @@ interface PublicCardProps {
 }
 
 export function PublicProjectCard({ project }: PublicCardProps) {
+  const preview = project.image ?? project.readmeImage ?? null;
   const target = project.siteUrl ?? project.html_url;
+  const langs = project.languages.length > 0 ? project.languages : project.language ? [project.language] : [];
 
   return (
     <a
       href={target}
       target="_blank"
       rel="noopener noreferrer"
-      className="group flex flex-col border border-foreground bg-background transition-colors duration-100 hover:bg-foreground focus-visible:outline focus-visible:outline-3 focus-visible:outline-foreground focus-visible:outline-offset-2"
+      className="group flex flex-col border border-foreground bg-background transition-colors duration-100 hover:bg-foreground focus-visible:outline-3 focus-visible:outline-foreground focus-visible:outline-offset-2"
       aria-label={`Apri ${project.name}`}
     >
       {/* Immagine preview */}
       <div className="aspect-video overflow-hidden border-b border-foreground bg-muted relative">
-        {project.image ? (
+        {preview ? (
           <img
-            src={project.image}
+            src={preview}
             alt={`Preview di ${project.name}`}
             className="w-full h-full object-cover transition-all duration-300 group-hover:scale-105 group-hover:grayscale"
+            loading="lazy"
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center">
-            <span className="font-mono text-xs uppercase tracking-widest text-muted-foreground group-hover:text-background/60">
+            <span className="font-mono text-xs uppercase tracking-widest text-muted-foreground group-hover:text-background/50">
               {project.name}
             </span>
           </div>
@@ -62,7 +69,7 @@ export function PublicProjectCard({ project }: PublicCardProps) {
       </div>
 
       {/* Contenuto */}
-      <div className="flex flex-col flex-1 p-6 gap-3">
+      <div className="flex flex-col flex-1 p-5 gap-3">
         <h3 className="font-display text-xl font-medium leading-tight text-foreground group-hover:text-background">
           {project.name}
         </h3>
@@ -71,12 +78,30 @@ export function PublicProjectCard({ project }: PublicCardProps) {
             {project.description}
           </p>
         )}
-        <div className="flex items-center justify-between mt-auto pt-3 border-t border-border-light group-hover:border-background/30">
-          <div className="font-mono text-xs text-muted-foreground group-hover:text-background/60">
-            {project.language && <LanguageDot lang={project.language} />}
+
+        {/* Topics */}
+        {project.topics.length > 0 && (
+          <div className="flex flex-wrap gap-1.5">
+            {project.topics.map((topic) => (
+              <span
+                key={topic}
+                className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground group-hover:text-background/50 border border-current px-1.5 py-0.5"
+              >
+                {topic}
+              </span>
+            ))}
+          </div>
+        )}
+
+        {/* Linguaggi + stelle */}
+        <div className="flex items-start justify-between gap-2 mt-auto pt-3 border-t border-border-light group-hover:border-background/20">
+          <div className="font-mono text-[11px] text-muted-foreground group-hover:text-background/60 flex flex-wrap gap-x-3 gap-y-1">
+            {langs.map((lang) => (
+              <LanguageDot key={lang} lang={lang} />
+            ))}
           </div>
           {project.stargazers_count > 0 && (
-            <span className="font-mono text-xs text-muted-foreground group-hover:text-background/60">
+            <span className="font-mono text-xs text-muted-foreground group-hover:text-background/60 shrink-0">
               ★ {project.stargazers_count}
             </span>
           )}
@@ -100,30 +125,28 @@ export function PrivateProjectCard({ project }: PrivateCardProps) {
   const target = project.siteUrl ?? project.repoUrl;
 
   const card = (
-    <div className="group flex flex-col border border-foreground bg-background transition-colors duration-100 hover:bg-foreground">
-      {/* Immagine preview */}
+    <div className="group flex flex-col border border-foreground bg-background transition-colors duration-100 hover:bg-foreground h-full">
       <div className="aspect-video overflow-hidden border-b border-foreground bg-muted relative">
         {project.image ? (
           <img
             src={project.image}
             alt={`Preview di ${project.title}`}
             className="w-full h-full object-cover transition-all duration-300 group-hover:scale-105 group-hover:grayscale"
+            loading="lazy"
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center">
-            <span className="font-mono text-xs uppercase tracking-widest text-muted-foreground group-hover:text-background/60">
+            <span className="font-mono text-xs uppercase tracking-widest text-muted-foreground group-hover:text-background/50">
               {project.title}
             </span>
           </div>
         )}
-        {/* Badge privato */}
-        <div className="absolute top-3 right-3 font-mono text-[10px] uppercase tracking-widest bg-foreground text-background px-2 py-0.5 group-hover:bg-background group-hover:text-foreground border border-transparent group-hover:border-background">
+        <div className="absolute top-3 right-3 font-mono text-[10px] uppercase tracking-widest bg-foreground text-background px-2 py-0.5 group-hover:bg-background group-hover:text-foreground">
           {TYPE_LABELS[project.type]} · Privato
         </div>
       </div>
 
-      {/* Contenuto */}
-      <div className="flex flex-col flex-1 p-6 gap-3">
+      <div className="flex flex-col flex-1 p-5 gap-3">
         <h3 className="font-display text-xl font-medium leading-tight text-foreground group-hover:text-background">
           {project.title}
         </h3>
@@ -131,7 +154,7 @@ export function PrivateProjectCard({ project }: PrivateCardProps) {
           {project.description}
         </p>
         {project.tags.length > 0 && (
-          <div className="flex flex-wrap gap-1.5 mt-auto pt-3 border-t border-border-light group-hover:border-background/30">
+          <div className="flex flex-wrap gap-1.5 mt-auto pt-3 border-t border-border-light group-hover:border-background/20">
             {project.tags.map((tag) => (
               <span
                 key={tag}
@@ -152,7 +175,7 @@ export function PrivateProjectCard({ project }: PrivateCardProps) {
         href={target}
         target="_blank"
         rel="noopener noreferrer"
-        className="focus-visible:outline focus-visible:outline-3 focus-visible:outline-foreground focus-visible:outline-offset-2"
+        className="focus-visible:outline-3 focus-visible:outline-foreground focus-visible:outline-offset-2"
         aria-label={`Apri ${project.title}`}
       >
         {card}

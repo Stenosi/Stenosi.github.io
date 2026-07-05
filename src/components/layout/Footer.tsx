@@ -29,7 +29,7 @@ export function Footer() {
             {heroData.social.email && (
               <a
                 href={`mailto:${heroData.social.email}`}
-                className="font-mono text-sm text-background/70 hover:text-background transition-colors duration-100 focus-visible:outline focus-visible:outline-3 focus-visible:outline-background focus-visible:outline-offset-2"
+                className="font-mono text-sm text-background/70 hover:text-background transition-colors duration-100 focus-visible:outline-3 focus-visible:outline-background focus-visible:outline-offset-2"
               >
                 {heroData.social.email}
               </a>
@@ -40,7 +40,7 @@ export function Footer() {
                   href={heroData.social.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-mono text-xs uppercase tracking-widest text-background/70 hover:text-background transition-colors duration-100 focus-visible:outline focus-visible:outline-3 focus-visible:outline-background focus-visible:outline-offset-2"
+                  className="font-mono text-xs uppercase tracking-widest text-background/70 hover:text-background transition-colors duration-100 focus-visible:outline-3 focus-visible:outline-background focus-visible:outline-offset-2"
                 >
                   GitHub →
                 </a>
@@ -50,9 +50,19 @@ export function Footer() {
                   href={heroData.social.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-mono text-xs uppercase tracking-widest text-background/70 hover:text-background transition-colors duration-100 focus-visible:outline focus-visible:outline-3 focus-visible:outline-background focus-visible:outline-offset-2"
+                  className="font-mono text-xs uppercase tracking-widest text-background/70 hover:text-background transition-colors duration-100 focus-visible:outline-3 focus-visible:outline-background focus-visible:outline-offset-2"
                 >
                   LinkedIn →
+                </a>
+              )}
+              {heroData.social.instagram && (
+                <a
+                  href={heroData.social.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-mono text-xs uppercase tracking-widest text-background/70 hover:text-background transition-colors duration-100 focus-visible:outline-3 focus-visible:outline-background focus-visible:outline-offset-2"
+                >
+                  Instagram →
                 </a>
               )}
             </div>

@@ -1,18 +1,14 @@
 import type { HeroData } from '../types';
 
-// TODO: aggiorna con i tuoi dati personali
 export const heroData: HeroData = {
-  nome: 'Stenosi',
-  tagline: 'Designer · Sviluppatore · Creativo',
-  bio: 'Sono uno studente universitario appassionato di design, sviluppo software e creatività visiva. Creo esperienze digitali e artwork che combinano estetica e funzionalità.',
-  // TODO: carica la tua foto su Cloudinary e incolla l'URL qui
-  // Esempio: 'https://res.cloudinary.com/fztk0qa2/image/upload/w_600,q_auto,f_auto/foto_profilo'
-  foto: '',
+  nome: 'Davide',
+  tagline: 'Sviluppatore Web · Game Dev · Creativo',
+  bio: 'Sviluppatore web con una laurea in Informatica per la Comunicazione Digitale, ho lavorato come front-end developer in stage su tecnologie come WordPress, Yii. Nel tempo libero sviluppo videogiochi in Godot, ho sperimentato con grafica 2D, animazioni in After Effects e modellazione 3D.',
+  foto: 'https://res.cloudinary.com/fztk0qa2/image/upload/v1783254844/linkedin_profile_pic_iyi4xb.jpg',
   social: {
     github: 'https://github.com/Stenosi',
-    // TODO: aggiungi il tuo LinkedIn
-    linkedin: '',
-    // TODO: aggiungi la tua email pubblica
-    email: '',
+    linkedin: 'https://www.linkedin.com/in/davide-marsili-stenosi/',
+    instagram: 'https://www.instagram.com/stenosi/',
+    email: 'davidemarsili4@gmail.com',
   },
 };
