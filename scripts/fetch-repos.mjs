@@ -46,6 +46,7 @@ const BADGE_PATTERNS = [
   /snyk\.io\/test/,
   /david-dm\.org/,
   /dependabot/i,
+  /placehold\.co/,
 ]
 
 function isBadge(url) {
