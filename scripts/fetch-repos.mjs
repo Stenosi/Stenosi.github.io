@@ -128,7 +128,7 @@ async function main() {
   if (TOKEN) {
     console.log('🔑  Token trovato - fetch con affiliation=owner,collaborator')
     repos = await fetchAllPages(
-      'https://api.github.com/user/repos?affiliation=owner,collaborator&sort=updated',
+      'https://api.github.com/user/repos?affiliation=owner,collaborator,organization_member&sort=updated',
     )
   } else {
     console.warn('⚠️   REPOS_TOKEN non trovato - uso API pubblica (solo repo proprie)')

@@ -13,74 +13,77 @@ export function Hero() {
         aria-hidden="true"
       />
 
-      {/* Nome oversized */}
-      <div className="relative">
-        <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground mb-6">
-          Portfolio - {new Date().getFullYear()}
-        </p>
-        <h1 className="font-display font-bold leading-none tracking-tighter text-foreground text-[clamp(3.5rem,12vw,9rem)]">
-          {heroData.nome}
-        </h1>
-        <div className="flex items-baseline gap-4 mt-3">
-        </div>
-        <p className="font-body text-xl md:text-2xl italic text-muted-foreground mt-6 max-w-lg">
-          {heroData.tagline}
-        </p>
-      </div>
+      {/* Contenitore principale: su mobile in colonna, su desktop affiancati e centrati verticalmente */}
+      <div className="relative flex flex-col md:flex-row gap-10 md:gap-20 items-stretch md:items-center pb-16">
 
-      {/* Bio + foto + social */}
-      <div className="relative flex flex-col md:flex-row gap-10 md:gap-20 items-start md:items-end pb-16 mt-16 md:mt-0">
-        {/* Bio e social */}
-        <div className="md:w-1/2 flex flex-col gap-8">
-          <p className="font-body text-base md:text-lg leading-relaxed text-muted-foreground max-w-md">
-            {heroData.bio}
-          </p>
+        {/* BLOCCO SINISTRO: Contiene Nome, Tagline, Bio e Social */}
+        <div className="md:w-1/2 flex flex-col">
+          {/* Nome oversized */}
+          <div className="relative">
+            <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground mb-6">
+              Portfolio - {new Date().getFullYear()}
+            </p>
+            <h1 className="font-display font-bold leading-none tracking-tighter text-foreground text-[clamp(3.5rem,12vw,9rem)]">
+              {heroData.nome}
+            </h1>
+            <div className="flex items-baseline gap-4 mt-3">
+            </div>
+            <p className="font-body text-xl md:text-2xl italic text-muted-foreground mt-6 max-w-lg">
+              {heroData.tagline}
+            </p>
+          </div>
 
-          <div className="flex flex-wrap gap-3">
-            {heroData.social.github && (
-              <a
-                href={heroData.social.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-mono text-xs uppercase tracking-widest border-2 border-foreground px-5 py-3 text-foreground hover:bg-foreground hover:text-background transition-colors duration-100 focus-visible:outline-3 focus-visible:outline-foreground focus-visible:outline-offset-2"
-              >
-                GitHub →
-              </a>
-            )}
-            {heroData.social.linkedin && (
-              <a
-                href={heroData.social.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-mono text-xs uppercase tracking-widest border-2 border-foreground px-5 py-3 text-foreground hover:bg-foreground hover:text-background transition-colors duration-100 focus-visible:outline-3 focus-visible:outline-foreground focus-visible:outline-offset-2"
-              >
-                LinkedIn →
-              </a>
-            )}
-            {heroData.social.instagram && (
-              <a
-                href={heroData.social.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-mono text-xs uppercase tracking-widest border border-border-light px-5 py-3 text-muted-foreground hover:border-foreground hover:text-foreground transition-colors duration-100 focus-visible:outline-3 focus-visible:outline-foreground focus-visible:outline-offset-2"
-              >
-                Instagram
-              </a>
-            )}
-            {heroData.social.email && (
-              <a
-                href={`mailto:${heroData.social.email}`}
-                className="font-mono text-xs tracking-widest border border-border-light px-5 py-3 text-muted-foreground hover:border-foreground hover:text-foreground transition-colors duration-100 focus-visible:outline-3 focus-visible:outline-foreground focus-visible:outline-offset-2"
-              >
-                davidemarsili4@gmail.com
-              </a>
-            )}
+          {/* Bio e social */}
+          <div className="flex flex-col gap-8 mt-16">
+            <p className="font-body text-base md:text-lg leading-relaxed text-muted-foreground max-w-md">
+              {heroData.bio}
+            </p>
+
+            <div className="flex flex-wrap gap-3">
+              {heroData.social.github && (
+                <a
+                  href={heroData.social.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-mono text-xs uppercase tracking-widest border-2 border-foreground px-5 py-3 text-foreground hover:bg-foreground hover:text-background transition-colors duration-100 focus-visible:outline-3 focus-visible:outline-foreground focus-visible:outline-offset-2"
+                >
+                  GitHub →
+                </a>
+              )}
+              {heroData.social.linkedin && (
+                <a
+                  href={heroData.social.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-mono text-xs uppercase tracking-widest border-2 border-foreground px-5 py-3 text-foreground hover:bg-foreground hover:text-background transition-colors duration-100 focus-visible:outline-3 focus-visible:outline-foreground focus-visible:outline-offset-2"
+                >
+                  LinkedIn →
+                </a>
+              )}
+              {heroData.social.instagram && (
+                <a
+                  href={heroData.social.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-mono text-xs uppercase tracking-widest border border-border-light px-5 py-3 text-muted-foreground hover:border-foreground hover:text-foreground transition-colors duration-100 focus-visible:outline-3 focus-visible:outline-foreground focus-visible:outline-offset-2"
+                >
+                  Instagram
+                </a>
+              )}
+              {heroData.social.email && (
+                <a
+                  href={`mailto:${heroData.social.email}`}
+                  className="font-mono text-xs tracking-widest border border-border-light px-5 py-3 text-muted-foreground hover:border-foreground hover:text-foreground transition-colors duration-100 focus-visible:outline-3 focus-visible:outline-foreground focus-visible:outline-offset-2"
+                >
+                  davidemarsili4@gmail.com
+                </a>
+              )}
+            </div>
           </div>
         </div>
 
-        {/* Foto profilo */}
-        <div className="md:w-1/2 flex md:justify-end">
-          {heroData.foto ? (
+        {/* BLOCCO DESTRO: Foto profilo */}
+        <div className="md:w-1/2 flex justify-center xl:justify-end">
             <div className="relative w-56 md:w-72 group">
               <div
                 className="absolute -bottom-2 -right-2 w-full h-full border-2 border-foreground
@@ -91,16 +94,9 @@ export function Hero() {
                 src={heroData.foto}
                 alt={`Foto di ${heroData.nome}`}
                 className="relative w-full border-2 border-foreground object-cover aspect-3/4
-                group-hover:-translate-x-1.5 group-hover:-translate-y-1.5 transition-transform duration-100"
+          group-hover:-translate-x-1.5 group-hover:-translate-y-1.5 transition-transform duration-100"
               />
             </div>
-          ) : (
-            <div className="w-56 md:w-72 aspect-3/4 border-2 border-border-light flex items-center justify-center bg-muted">
-              <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground text-center px-4">
-                Aggiungi la tua foto in<br />src/data/hero.ts
-              </p>
-            </div>
-          )}
         </div>
       </div>
 
