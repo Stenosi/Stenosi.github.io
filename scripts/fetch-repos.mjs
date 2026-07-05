@@ -126,7 +126,7 @@ async function main() {
   let repos = []
 
   if (TOKEN) {
-    console.log('🔑  Token trovato - fetch con affiliation=owner,collaborator')
+    console.log('🔑  Token trovato - fetch con affiliation=owner,collaborator,organization_member')
     repos = await fetchAllPages(
       'https://api.github.com/user/repos?affiliation=owner,collaborator,organization_member&sort=updated',
     )
