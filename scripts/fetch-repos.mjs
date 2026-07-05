@@ -49,8 +49,23 @@ const BADGE_PATTERNS = [
   /placehold\.co/,
 ]
 
+function decodeCamoUrl(camoUrl) {
+  const match = camoUrl.match(/camo\.githubusercontent\.com\/[a-f0-9]+\/([a-f0-9]+)/)
+  if (!match) return null
+  try {
+    return Buffer.from(match[1], 'hex').toString('utf8')
+  } catch {
+    return null
+  }
+}
+
 function isBadge(url) {
-  return BADGE_PATTERNS.some((pattern) => pattern.test(url))
+  if (BADGE_PATTERNS.some((pattern) => pattern.test(url))) return true
+  if (url.includes('camo.githubusercontent.com')) {
+    const original = decodeCamoUrl(url)
+    if (original && BADGE_PATTERNS.some((pattern) => pattern.test(original))) return true
+  }
+  return false
 }
 
 function extractImages(text, ownerLogin, repoName, branch) {
@@ -61,8 +76,11 @@ function extractImages(text, ownerLogin, repoName, branch) {
     const url = match[1]
     if (url.startsWith('http')) {
       images.push(url)
+    } else if (url.startsWith('/')) {
+      // URL assoluto su github.com (es. /org/repo/raw/branch/path)
+      images.push(`https://github.com${url}`)
     } else {
-      const rel = url.replace(/^\.?\//, '')
+      const rel = url.replace(/^\.\//, '')
       images.push(`https://raw.githubusercontent.com/${ownerLogin}/${repoName}/${branch}/${rel}`)
     }
   }
