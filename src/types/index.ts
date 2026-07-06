@@ -59,7 +59,6 @@ export interface MergedProject extends GitHubRepo {
   hideGithubLink?: boolean;
   hideSiteLink?: boolean;
   tags?: string[];
-  description?: string;
 }
 
 export interface Esperienza {
