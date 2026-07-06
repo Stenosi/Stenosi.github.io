@@ -6,28 +6,31 @@ import type { PublicRepoConfig, PrivateProject } from '../types';
 // siteUrl: sovrascrive l'homepage della repo.
 export const publicRepoConfigs: PublicRepoConfig[] = [
   {
-    repoName: 'CatSee',
-    // image: 'https://res.cloudinary.com/fztk0qa2/image/upload/w_800,q_auto,f_auto,ar_16:9,c_fill/catsee_screenshot',
-    // siteUrl: 'https://...',
+    repoName: 'Stenosi.github.io',
     featured: true,
+    hideSiteLink: true,
   },
-  // Aggiungi qui le repo delle battaglie navale / videogiochi se vuoi metterle in evidenza:
-  // {
-  //   repoName: 'nome-repo-phaser',
-  //   featured: true,
-  //   siteUrl: 'https://stenosi.github.io/nome-repo',
-  // },
+  {
+    repoName: 'flow-nvidia-control',
+    featured: true,
+    hideSiteLink: true,
+  },
+  {
+    repoName: 'aziende-marchigiane',
+    featured: true,
+    hideSiteLink: true,
+  },
 ];
 
 // Progetti completamente privati senza repo GitHub visibile dal token.
 // CatSee è già gestita sopra tramite API (la repo è privata ma il token la trova).
 export const privateProjects: PrivateProject[] = [
   // Esempio se avessi un progetto fuori da GitHub:
-  // {
-  //   title: 'Videogioco non ancora in repo',
-  //   description: 'Descrizione del progetto.',
-  //   image: 'https://res.cloudinary.com/fztk0qa2/image/upload/w_800,q_auto,f_auto,ar_16:9,c_fill/nome_file',
-  //   tags: ['Godot', 'GDScript'],
-  //   type: 'altro',
-  // },
+  {
+    title: 'No Syntax Required',
+    description: 'Progettazione e sviluppo di un videogioco educativo per l\'apprendimento dei concetti base di programmazione realizzato in Godot.',
+    image: 'https://res.cloudinary.com/fztk0qa2/image/upload/w_800,q_auto,f_auto,ar_16:9,c_fill/NoSyntaxRequired_knsezw.png',
+    tags: ['Godot', 'GDScript'],
+    type: 'altro',
+  },
 ];

@@ -182,6 +182,8 @@ async function main() {
     fork: false,
     archived: false,
     readmeImage: readmeImages[i] ?? null,
+    private: r.private ?? false,
+    ownerLogin: r.owner?.login ?? '',
   }))
 
   writeFileSync(OUTPUT_PATH, JSON.stringify(slim, null, 2))

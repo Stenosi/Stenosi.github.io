@@ -16,6 +16,10 @@ export interface PublicRepoConfig {
   image?: string;
   siteUrl?: string;
   featured?: boolean;
+  hidden?: boolean;
+  objectFit?: 'cover' | 'contain';
+  hideGithubLink?: boolean;
+  hideSiteLink?: boolean;
 }
 
 export interface PrivateProject {
@@ -41,12 +45,17 @@ export interface GitHubRepo {
   fork: boolean;
   archived: boolean;
   readmeImage: string | null;
+  private: boolean;
+  ownerLogin: string;
 }
 
 export interface MergedProject extends GitHubRepo {
   image?: string;
   featured?: boolean;
   siteUrl?: string;
+  objectFit?: 'cover' | 'contain';
+  hideGithubLink?: boolean;
+  hideSiteLink?: boolean;
 }
 
 export interface Esperienza {

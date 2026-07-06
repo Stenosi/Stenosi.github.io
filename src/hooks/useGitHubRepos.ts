@@ -5,15 +5,21 @@ import { publicRepoConfigs } from '../data/progetti';
 const GITHUB_USERNAME = 'Stenosi';
 
 function mergeWithConfigs(repos: GitHubRepo[]): MergedProject[] {
-  const merged: MergedProject[] = repos.map((repo) => {
+  const merged: MergedProject[] = [];
+
+  for (const repo of repos) {
     const config = publicRepoConfigs.find((c) => c.repoName === repo.name);
-    return {
+    if (config?.hidden) continue;
+    merged.push({
       ...repo,
       image: config?.image,
       featured: config?.featured ?? false,
       siteUrl: config?.siteUrl ?? repo.homepage ?? undefined,
-    };
-  });
+      objectFit: config?.objectFit,
+      hideGithubLink: config?.hideGithubLink,
+      hideSiteLink: config?.hideSiteLink,
+    });
+  }
 
   merged.sort((a, b) => {
     if (a.featured && !b.featured) return -1;
@@ -52,8 +58,26 @@ export function useGitHubRepos() {
           `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=100`,
         );
         if (!res.ok) throw new Error(`GitHub API error: ${res.status}`);
-        const data: GitHubRepo[] = await res.json();
-        const filtered = data.filter((r) => !r.fork && !r.archived);
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const raw: any[] = await res.json();
+        const filtered: GitHubRepo[] = raw
+          .filter((r) => !r.fork && !r.archived)
+          .map((r) => ({
+            id: r.id,
+            name: r.name,
+            description: r.description,
+            html_url: r.html_url,
+            homepage: r.homepage,
+            language: r.language,
+            languages: [],
+            stargazers_count: r.stargazers_count,
+            topics: r.topics ?? [],
+            fork: false,
+            archived: false,
+            readmeImage: null,
+            private: r.private ?? false,
+            ownerLogin: r.owner?.login ?? GITHUB_USERNAME,
+          }));
         setRepos(mergeWithConfigs(filtered));
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Errore sconosciuto');
