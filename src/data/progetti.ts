@@ -5,8 +5,12 @@ import type { PublicRepoConfig, PrivateProject } from '../types';
 // image: opzionale, sovrascrive la prima immagine del README auto-estratta.
 // siteUrl: sovrascrive l'homepage della repo.
 export const publicRepoConfigs: PublicRepoConfig[] = [
-    {
+  {
     repoName: 'Edge-Rewards-Test',
+    featured: false,
+  },
+  {
+    repoName: 'edge-rewards',
     featured: false,
   },
   {
@@ -24,6 +28,17 @@ export const publicRepoConfigs: PublicRepoConfig[] = [
     featured: true,
     hideSiteLink: true,
   },
+  {
+    repoName: 'StrangePlacesJam',
+    description: 'System Error: Gravity Not Found \n Made for Brackeys Game Jam 2026.1',
+    image: 'https://img.itch.zone/aW1nLzI1NzM0MTkzLnBuZw==/315x250%23c/7u5Pd9.png',
+    siteUrl: 'https://ctrl-elle.itch.io/system-error-gravity-not-found',
+    tags: ['Itch.io', 'Godot'],
+  },
+  {
+    repoName: 'Utilities',
+    siteUrl: 'https://stenosi-org.github.io/Utilities/dist/index.html'
+  }
 ];
 
 // Progetti completamente privati senza repo GitHub visibile dal token.

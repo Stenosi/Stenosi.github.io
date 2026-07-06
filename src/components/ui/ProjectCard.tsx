@@ -20,13 +20,23 @@ const LANG_COLORS: Record<string, string> = {
   PHP: '#4F5D95',
 };
 
+function hasIndicator(tag: string): boolean {
+  const lower = tag.toLowerCase();
+  return !!LANG_COLORS[tag] || lower === 'godot' || lower === 'itch.io';
+}
+
+function sortByIndicator<T extends string>(tags: T[]): T[] {
+  return [...tags].sort((a, b) => Number(hasIndicator(b)) - Number(hasIndicator(a)));
+}
+
 function LanguageDot({ lang }: { lang: string }) {
   const color = LANG_COLORS[lang] ?? '#888';
-  const isGodot = lang.toLowerCase() === 'godot';
+  const lower = lang.toLowerCase();
+  const logoSrc = lower === 'godot' ? '/godot-logo.svg' : lower === 'itch.io' ? '/itchio-icon.svg' : null;
   return (
     <span className="flex items-center gap-1">
-      {isGodot ? (
-        <img src="/godot-logo.svg" alt="" className="w-3 h-3 shrink-0" aria-hidden="true" />
+      {logoSrc ? (
+        <img src={logoSrc} alt="" className="w-3 h-3 shrink-0" aria-hidden="true" />
       ) : (
         <span
           className="inline-block w-2 h-2 shrink-0"
@@ -72,7 +82,9 @@ export function PublicProjectCard({ project }: PublicCardProps) {
   const preview = project.image ?? project.readmeImage ?? null;
   const objectFit = project.objectFit ?? 'cover';
   const dominantColor = useDominantColor(objectFit === 'contain' ? preview : null);
-  const langs = project.languages.length > 0 ? project.languages : project.language ? [project.language] : [];
+  const autoLangs = project.languages.length > 0 ? project.languages : project.language ? [project.language] : [];
+  const manualTags = (project.tags ?? []).filter(t => !autoLangs.includes(t));
+  const langs = sortByIndicator([...autoLangs, ...manualTags]);
 
   const badge = project.private ? 'Privata' : null;
 
@@ -138,9 +150,13 @@ export function PublicProjectCard({ project }: PublicCardProps) {
           {/* Linguaggi + stelle */}
           <div className="flex items-start justify-between gap-2 mt-auto pt-3 border-t border-border-light transition-colors duration-100 group-hover:border-background/20">
             <div className="font-mono text-[11px] text-muted-foreground group-hover:text-background/60 flex flex-wrap gap-x-3 gap-y-1">
-              {langs.map((lang) => (
-                <LanguageDot key={lang} lang={lang} />
-              ))}
+              {langs.map((lang) =>
+                hasIndicator(lang) ? (
+                  <LanguageDot key={lang} lang={lang} />
+                ) : (
+                  <span key={lang} className="uppercase tracking-widest">{lang}</span>
+                )
+              )}
             </div>
             {project.stargazers_count > 0 && (
               <span className="font-mono text-xs text-muted-foreground group-hover:text-background/60 shrink-0">
@@ -221,8 +237,8 @@ export function PrivateProjectCard({ project }: PrivateCardProps) {
           </p>
           {project.tags.length > 0 && (
             <div className="flex flex-wrap gap-x-3 gap-y-1 mt-auto pt-3 border-t border-border-light transition-colors duration-100 group-hover:border-background/20 font-mono text-[11px] text-muted-foreground group-hover:text-background/60">
-              {project.tags.map((tag) =>
-                LANG_COLORS[tag] || tag.toLowerCase() === 'godot' ? (
+              {sortByIndicator(project.tags).map((tag) =>
+                hasIndicator(tag) ? (
                   <LanguageDot key={tag} lang={tag} />
                 ) : (
                   <span key={tag} className="uppercase tracking-widest">

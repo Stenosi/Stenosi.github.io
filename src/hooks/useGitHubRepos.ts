@@ -18,6 +18,8 @@ function mergeWithConfigs(repos: GitHubRepo[]): MergedProject[] {
       objectFit: config?.objectFit,
       hideGithubLink: config?.hideGithubLink,
       hideSiteLink: config?.hideSiteLink,
+      tags: config?.tags,
+      description: config?.description ?? repo.description,
     });
   }
 

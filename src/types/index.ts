@@ -20,6 +20,8 @@ export interface PublicRepoConfig {
   objectFit?: 'cover' | 'contain';
   hideGithubLink?: boolean;
   hideSiteLink?: boolean;
+  tags?: string[];
+  description?: string;
 }
 
 export interface PrivateProject {
@@ -56,6 +58,8 @@ export interface MergedProject extends GitHubRepo {
   objectFit?: 'cover' | 'contain';
   hideGithubLink?: boolean;
   hideSiteLink?: boolean;
+  tags?: string[];
+  description?: string;
 }
 
 export interface Esperienza {
