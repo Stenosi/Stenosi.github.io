@@ -6,7 +6,7 @@ import type { PublicRepoConfig, PrivateProject } from '../types';
 // siteUrl: sovrascrive l'homepage della repo.
 export const publicRepoConfigs: PublicRepoConfig[] = [
   {
-    repoName: 'CatSee',
+    repoName: 'catsee',
     featured: true,
   },
   {
