@@ -5,6 +5,10 @@ import type { PublicRepoConfig, PrivateProject } from '../types';
 // image: opzionale, sovrascrive la prima immagine del README auto-estratta.
 // siteUrl: sovrascrive l'homepage della repo.
 export const publicRepoConfigs: PublicRepoConfig[] = [
+    {
+    repoName: 'Edge-Rewards-Test',
+    featured: false,
+  },
   {
     repoName: 'Stenosi.github.io',
     featured: true,
