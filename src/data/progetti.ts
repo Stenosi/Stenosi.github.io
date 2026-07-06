@@ -6,26 +6,35 @@ import type { PublicRepoConfig, PrivateProject } from '../types';
 // siteUrl: sovrascrive l'homepage della repo.
 export const publicRepoConfigs: PublicRepoConfig[] = [
   {
-    repoName: 'Edge-Rewards-Test',
-    featured: false,
-  },
-  {
-    repoName: 'edge-rewards',
-    featured: false,
-  },
-  {
-    repoName: 'Stenosi.github.io',
+    repoName: 'CatSee',
     featured: true,
-    hideSiteLink: true,
+  },
+  {
+    repoName: 'Bones-Do-Rest-Beneath',
+    featured: true,
   },
   {
     repoName: 'flow-nvidia-control',
     featured: true,
+  },
+  {
+    repoName: 'Edge-Rewards-Test',
+    hidden: true,
+  },
+  {
+    repoName: 'edge-rewards',
+    hidden: true,
+  },
+  {
+    repoName: 'Stenosi.github.io',
+    hideSiteLink: true,
+  },
+  {
+    repoName: 'flow-nvidia-control',
     hideSiteLink: true,
   },
   {
     repoName: 'aziende-marchigiane',
-    featured: true,
     hideSiteLink: true,
   },
   {

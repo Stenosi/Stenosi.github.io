@@ -20,13 +20,21 @@ const LANG_COLORS: Record<string, string> = {
   PHP: '#4F5D95',
 };
 
-function hasIndicator(tag: string): boolean {
+const LOGO_TAGS = new Set(['godot', 'itch.io']);
+
+function tagPriority(tag: string): number {
   const lower = tag.toLowerCase();
-  return !!LANG_COLORS[tag] || lower === 'godot' || lower === 'itch.io';
+  if (LOGO_TAGS.has(lower)) return 0;
+  if (LANG_COLORS[tag]) return 1;
+  return 2;
+}
+
+function hasIndicator(tag: string): boolean {
+  return tagPriority(tag) < 2;
 }
 
 function sortByIndicator<T extends string>(tags: T[]): T[] {
-  return [...tags].sort((a, b) => Number(hasIndicator(b)) - Number(hasIndicator(a)));
+  return [...tags].sort((a, b) => tagPriority(a) - tagPriority(b));
 }
 
 function LanguageDot({ lang }: { lang: string }) {
