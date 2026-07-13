@@ -5,7 +5,7 @@ export const artworkGroups: ArtworkGroup[] = [
     tipo: 'brutalism',
     label: 'Brutalism',
     layout: 'grid',
-    defaultOpen: true,
+    defaultOpen: false,
     items: [
       { titolo: 'PROSPERITY', src: 'https://res.cloudinary.com/fztk0qa2/image/upload/w_1200,q_auto,f_auto/1_PROSPERITY_jk6mvn.png', anno: 2023 },
       { titolo: 'DISCOVERY', src: 'https://res.cloudinary.com/fztk0qa2/image/upload/w_1200,q_auto,f_auto/2.1_DISCOVERY_mli2ks', anno: 2023 },
@@ -36,7 +36,7 @@ export const artworkGroups: ArtworkGroup[] = [
     tipo: 'entomophobia',
     label: 'Entomophobia',
     layout: 'grid',
-    defaultOpen: true,
+    defaultOpen: false,
     items: [
       { titolo: 'Cicada - Black', src: 'https://res.cloudinary.com/fztk0qa2/image/upload/w_800,q_auto,f_auto/Cicada_W_itwzbr', anno: 2022 },
       { titolo: 'Cicada - White', src: 'https://res.cloudinary.com/fztk0qa2/image/upload/w_800,q_auto,f_auto/Cicada_B_vnimkd', anno: 2022 },
@@ -66,7 +66,7 @@ export const artworkGroups: ArtworkGroup[] = [
     tipo: 'quadriAnimati',
     label: 'Quadri animati',
     layout: 'masonry',
-    defaultOpen: true,
+    defaultOpen: false,
     items: [
       { titolo: 'Peephole', src: 'https://res.cloudinary.com/fztk0qa2/video/upload/v1783262068/Comp_1_wk1zbs.mp4', thumbnail: 'https://res.cloudinary.com/fztk0qa2/video/upload/so_0/Comp_1_wk1zbs.jpg', anno: 2022 },
       { titolo: 'Miruna', src: 'https://res.cloudinary.com/fztk0qa2/video/upload/v1783262714/Miruna_gevocm.mp4', thumbnail: 'https://res.cloudinary.com/fztk0qa2/video/upload/so_0/Miruna_gevocm.jpg', anno: 2022 },

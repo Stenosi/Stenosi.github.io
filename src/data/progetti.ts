@@ -12,6 +12,7 @@ export const publicRepoConfigs: PublicRepoConfig[] = [
   {
     repoName: 'Bones-Do-Rest-Beneath',
     featured: true,
+    objectFit: 'contain',
   },
   {
     repoName: 'flow-nvidia-control',
@@ -39,6 +40,7 @@ export const publicRepoConfigs: PublicRepoConfig[] = [
   },
   {
     repoName: 'StrangePlacesJam',
+    objectFit: 'contain',
     description: 'System Error: Gravity Not Found \n Made for Brackeys Game Jam 2026.1',
     image: 'https://img.itch.zone/aW1nLzI1NzM0MTkzLnBuZw==/315x250%23c/7u5Pd9.png',
     siteUrl: 'https://ctrl-elle.itch.io/system-error-gravity-not-found',
