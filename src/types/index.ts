@@ -18,6 +18,7 @@ export interface PublicRepoConfig {
   featured?: boolean;
   hidden?: boolean;
   objectFit?: 'cover' | 'contain';
+  bgColor?: string;
   hideGithubLink?: boolean;
   hideSiteLink?: boolean;
   tags?: string[];
@@ -56,6 +57,7 @@ export interface MergedProject extends GitHubRepo {
   featured?: boolean;
   siteUrl?: string;
   objectFit?: 'cover' | 'contain';
+  bgColor?: string;
   hideGithubLink?: boolean;
   hideSiteLink?: boolean;
   tags?: string[];

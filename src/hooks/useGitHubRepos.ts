@@ -16,6 +16,7 @@ function mergeWithConfigs(repos: GitHubRepo[]): MergedProject[] {
       featured: config?.featured ?? false,
       siteUrl: config?.siteUrl ?? repo.homepage ?? undefined,
       objectFit: config?.objectFit,
+      bgColor: config?.bgColor,
       hideGithubLink: config?.hideGithubLink,
       hideSiteLink: config?.hideSiteLink,
       tags: config?.tags,

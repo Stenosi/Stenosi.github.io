@@ -89,7 +89,8 @@ interface PublicCardProps {
 export function PublicProjectCard({ project }: PublicCardProps) {
   const preview = project.image ?? project.readmeImage ?? null;
   const objectFit = project.objectFit ?? 'cover';
-  const dominantColor = useDominantColor(objectFit === 'contain' ? preview : null);
+  const dominantColor = useDominantColor(objectFit === 'contain' && !project.bgColor ? preview : null);
+  const bgColor = project.bgColor ?? dominantColor;
   const autoLangs = project.languages.length > 0 ? project.languages : project.language ? [project.language] : [];
   const manualTags = (project.tags ?? []).filter(t => !autoLangs.includes(t));
   const langs = sortByIndicator([...autoLangs, ...manualTags]);
@@ -107,7 +108,7 @@ export function PublicProjectCard({ project }: PublicCardProps) {
         {/* Immagine preview */}
         <div
           className="aspect-video overflow-hidden border-b border-foreground relative"
-          style={objectFit === 'contain' ? { backgroundColor: dominantColor } : undefined}
+          style={objectFit === 'contain' ? { backgroundColor: bgColor } : undefined}
         >
           {preview ? (
             <img
