@@ -114,7 +114,7 @@ export function PublicProjectCard({ project }: PublicCardProps) {
             <img
               src={preview}
               alt={`Preview di ${project.name}`}
-              className={`w-full h-full transition-all duration-300 group-hover:scale-105 group-hover:grayscale ${objectFit === 'contain' ? 'object-contain' : 'object-cover'}`}
+              className={`w-full h-full transition-all duration-300 group-hover:scale-105 ${objectFit === 'contain' ? 'object-contain' : 'object-cover'}`}
               loading="lazy"
             />
           ) : (
@@ -225,7 +225,7 @@ export function PrivateProjectCard({ project }: PrivateCardProps) {
             <img
               src={project.image}
               alt={`Preview di ${project.title}`}
-              className="w-full h-full object-cover transition-all duration-300 group-hover:scale-105 group-hover:grayscale"
+              className="w-full h-full object-cover transition-all duration-300 group-hover:scale-105"
               loading="lazy"
             />
           ) : (
