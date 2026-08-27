@@ -156,8 +156,8 @@ async function main() {
     )
   }
 
-  const filtered = repos.filter((r) => !r.fork && !r.archived)
-  console.log(`   ${filtered.length} repo dopo filtro fork/archived`)
+  const filtered = repos.filter((r) => !r.archived)
+  console.log(`   ${filtered.length} repo dopo filtro archived`)
 
   console.log('   Fetch immagini README...')
   const readmeImages = await inBatches(filtered, 5, (r) =>
@@ -179,7 +179,7 @@ async function main() {
     languages: languagesPerRepo[i],
     stargazers_count: r.stargazers_count,
     topics: r.topics ?? [],
-    fork: false,
+    fork: r.fork ?? false,
     archived: false,
     readmeImage: readmeImages[i] ?? null,
     private: r.private ?? false,

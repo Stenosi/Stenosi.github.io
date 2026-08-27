@@ -64,7 +64,7 @@ export function useGitHubRepos() {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const raw: any[] = await res.json();
         const filtered: GitHubRepo[] = raw
-          .filter((r) => !r.fork && !r.archived)
+          .filter((r) => !r.archived)
           .map((r) => ({
             id: r.id,
             name: r.name,
@@ -75,7 +75,7 @@ export function useGitHubRepos() {
             languages: [],
             stargazers_count: r.stargazers_count,
             topics: r.topics ?? [],
-            fork: false,
+            fork: r.fork ?? false,
             archived: false,
             readmeImage: null,
             private: r.private ?? false,

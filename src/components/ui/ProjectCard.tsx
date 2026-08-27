@@ -95,7 +95,7 @@ export function PublicProjectCard({ project }: PublicCardProps) {
   const manualTags = (project.tags ?? []).filter(t => !autoLangs.includes(t));
   const langs = sortByIndicator([...autoLangs, ...manualTags]);
 
-  const badge = project.private ? 'Privata' : null;
+  const badge = project.private ? 'Privata' : project.fork ? 'Fork' : null;
 
   const siteUrl = project.siteUrl;
   const showGithub = !project.hideGithubLink;
