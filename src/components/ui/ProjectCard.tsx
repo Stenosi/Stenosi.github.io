@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import type { MergedProject, PrivateProject } from '../../types';
 
 const LANG_COLORS: Record<string, string> = {
@@ -82,6 +82,88 @@ function useDominantColor(imageUrl: string | null): string {
   return color;
 }
 
+// --- Shared animation loop ---
+type BlobParams = {
+  baseX: number; baseY: number; r: number; brightness: number;
+  phaseX: number; phaseY: number; freqX: number; freqY: number; amp: number;
+};
+type CardEntry = { canvas: HTMLCanvasElement; blobs: BlobParams[]; visible: boolean; blurPhase: number };
+
+const _cards = new Set<CardEntry>();
+let _rafId: number | null = null;
+let _t = 0;
+let _tPhase = 0;
+
+function _drawCard(entry: CardEntry) {
+  const { canvas, blobs, blurPhase } = entry;
+  const blurAmt = 10 + Math.sin(_t * 0.4 + blurPhase) * 8;
+  canvas.style.filter = `blur(${blurAmt.toFixed(1)}px)`;
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return;
+  const w = canvas.width, h = canvas.height;
+  ctx.fillStyle = '#0a0a0a';
+  ctx.fillRect(0, 0, w, h);
+  ctx.globalCompositeOperation = 'screen';
+  for (const b of blobs) {
+    const cx = b.baseX + Math.sin(_t * b.freqX + b.phaseX) * b.amp;
+    const cy = b.baseY + Math.cos(_t * b.freqY + b.phaseY) * b.amp;
+    const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, b.r);
+    const v = b.brightness;
+    grad.addColorStop(0,   `rgba(${v},${v},${v},1)`);
+    grad.addColorStop(0.5, `rgba(${v},${v},${v},0.25)`);
+    grad.addColorStop(1,   `rgba(${v},${v},${v},0)`);
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, w, h);
+  }
+  ctx.globalCompositeOperation = 'source-over';
+}
+
+function _tick() {
+  _tPhase += 0.002;
+  _t += 0.002 + Math.sin(_tPhase) * 0.0015;
+  for (const entry of _cards) if (entry.visible) _drawCard(entry);
+  _rafId = requestAnimationFrame(_tick);
+}
+
+function _startLoop() { if (_rafId === null) _rafId = requestAnimationFrame(_tick); }
+function _stopLoop()  { if (_cards.size === 0 && _rafId !== null) { cancelAnimationFrame(_rafId); _rafId = null; } }
+
+function MeshGradientPlaceholder() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const w = canvas.offsetWidth  || 400;
+    const h = canvas.offsetHeight || 225;
+    canvas.width  = w;
+    canvas.height = h;
+
+    const blobs: BlobParams[] = Array.from({ length: 5 }, () => ({
+      baseX:      Math.random() * w,
+      baseY:      Math.random() * h,
+      r:          Math.min(w, h) * (0.3 + Math.random() * 0.45),
+      brightness: Math.floor(Math.random() * 180 + 50),
+      phaseX:     Math.random() * Math.PI * 2,
+      phaseY:     Math.random() * Math.PI * 2,
+      freqX:      0.8 + Math.random() * 1.2,
+      freqY:      0.8 + Math.random() * 1.2,
+      amp:        Math.min(w, h) * (0.1 + Math.random() * 0.2),
+    }));
+
+    const entry: CardEntry = { canvas, blobs, visible: true, blurPhase: Math.random() * Math.PI * 2 };
+    _cards.add(entry);
+    _startLoop();
+
+    const observer = new IntersectionObserver(([e]) => { entry.visible = e.isIntersecting; });
+    observer.observe(canvas);
+
+    return () => { _cards.delete(entry); observer.disconnect(); _stopLoop(); };
+  }, []);
+
+  return <canvas ref={canvasRef} className="absolute w-full h-full" style={{ inset: '-20px', width: 'calc(100% + 40px)', height: 'calc(100% + 40px)', filter: 'blur(10px)' }} />;
+}
+
 interface PublicCardProps {
   project: MergedProject;
 }
@@ -118,11 +200,7 @@ export function PublicProjectCard({ project }: PublicCardProps) {
               loading="lazy"
             />
           ) : (
-            <div className="w-full h-full flex items-center justify-center bg-muted">
-              <span className="font-mono text-xs uppercase tracking-widest text-muted-foreground group-hover:text-background/50">
-                {project.name}
-              </span>
-            </div>
+            <MeshGradientPlaceholder />
           )}
           {badge && (
             <div className="absolute top-0 right-0 font-mono text-[10px] uppercase tracking-widest bg-background text-foreground px-2 py-1 border-l border-b border-foreground transition-colors duration-100 group-hover:bg-foreground group-hover:text-background">
