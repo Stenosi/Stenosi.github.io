@@ -52,6 +52,14 @@ export const publicRepoConfigs: PublicRepoConfig[] = [
   {
     repoName: 'Utilities',
     siteUrl: 'https://stenosi-org.github.io/Utilities/dist/index.html'
+  },
+  {
+    repoName: 'Flow.Launcher.PluginsManifest',
+    hidden: true,
+  },
+  {
+    repoName: 'Stenosi',
+    hidden: true,
   }
 ];
 
