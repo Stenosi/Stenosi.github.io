@@ -60,6 +60,10 @@ export const publicRepoConfigs: PublicRepoConfig[] = [
   {
     repoName: 'Stenosi',
     hidden: true,
+  },
+  {
+    repoName: 'GOG-Galaxy-React-exporter',
+    siteUrl: 'https://stenosi.github.io/GOG-Galaxy-React-exporter/',
   }
 ];
 
