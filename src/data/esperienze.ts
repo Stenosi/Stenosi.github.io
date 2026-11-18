@@ -2,13 +2,22 @@ import type { Esperienza } from '../types';
 
 export const esperienze: Esperienza[] = [
   {
+    ruolo: 'Sviluppatore Web (Apprendistato)',
+    organizzazione: 'Greenbubble',
+    luogo: 'Camerano, AN',
+    periodo: 'Set 2026 - in corso',
+    descrizione:
+      'Sviluppo e manutenzione di applicazioni web su stack PHP con Yii e Bootstrap. Integrazione con servizi terzi tramite API — FattureInCloud, Klaviyo, stampante scontrini — e utilizzo di React, Tailwind e Magento su progetti specifici.',
+    tags: ['Bootstrap', 'FattureInCloud', 'git', 'Klaviyo', 'Magento', 'MySQL', 'PHP', 'phpMyAdmin', 'React', 'REST API', 'Tailwind', 'Yii'],
+  },
+  {
     ruolo: 'Sviluppatore Web (Tirocinio)',
     organizzazione: 'Greenbubble',
     luogo: 'Camerano, AN',
-    periodo: 'Giu 2026 - in corso',
+    periodo: 'Giu 2026 - Set 2026',
     descrizione:
-      'Sviluppo web su stack PHP con framework Yii e Bootstrap.',
-    tags: ['PHP', 'phpMyAdmin', 'Yii', 'Bootstrap', 'MySQL', 'git'],
+      'Sviluppo e manutenzione di applicazioni web su stack PHP con Yii e Bootstrap. Integrazione con servizi terzi tramite API — FattureInCloud, Klaviyo, stampante scontrini — e utilizzo di React, Tailwind e Magento su progetti specifici.',
+    tags: ['Bootstrap', 'FattureInCloud', 'git', 'Klaviyo', 'Magento', 'MySQL', 'PHP', 'phpMyAdmin', 'React', 'REST API', 'Tailwind', 'Yii'],
   },
   {
     ruolo: 'Sviluppatore Web (stage curriculare - 300 ore)',

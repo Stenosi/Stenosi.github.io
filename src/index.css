@@ -20,6 +20,11 @@
   --radius-full: 0px;
 }
 
+::selection {
+  background-color: #000000;
+  color: #ffffff;
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
